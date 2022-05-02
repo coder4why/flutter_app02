@@ -1,7 +1,7 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
-import 'package:flutter_app02/pages/listen/model/ListenModel.dart';
 import '../../request/request.dart';
+import 'model/ListenModel.dart';
 
 class ListenPage extends StatefulWidget {
   const ListenPage({Key? key}) : super(key: key);

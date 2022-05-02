@@ -1,7 +1,8 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
-import 'package:flutter_app02/pages/personal/model/PersonalModel.dart';
-import 'package:flutter_app02/request/request.dart';
+import '../../request/request.dart';
+import 'PersonalDetail.dart';
+import 'model/PersonalModel.dart';
 
 class PersonalPage extends StatefulWidget {
   const PersonalPage({Key? key}) : super(key: key);
@@ -86,14 +87,14 @@ class PersonalPageWidget extends State<PersonalPage> {
                         'images/loadMore.png',
                         width: 18,
                         height: 18,
-                        color: Colors.orange,
+                        color: Colors.teal,
                       ),
                       const SizedBox(
                         width: 5,
                       ),
                       const Text(
                         '拼命加载中...',
-                        style: TextStyle(color: Colors.orange, fontSize: 16),
+                        style: TextStyle(color: Colors.teal, fontSize: 16),
                       )
                     ],
                   ),
@@ -110,37 +111,45 @@ class PersonItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        border: Border.all(
-            width: 1, color: const Color.fromARGB(255, 223, 220, 220)),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            jsonModel.userName,
-            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+    return GestureDetector(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return PersonalDetail(jsonModel);
+          }));
+        },
+        child: Container(
+          margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            border: Border.all(
+                width: 1, color: const Color.fromARGB(255, 223, 220, 220)),
           ),
-          const SizedBox(
-            height: 2,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                jsonModel.userName,
+                style:
+                    const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 2,
+              ),
+              Text(
+                jsonModel.title,
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 6,
+              ),
+              Image.network(
+                jsonModel.coverUrl,
+                height: 200,
+                fit: BoxFit.fitHeight,
+              ),
+            ],
           ),
-          Text(
-            jsonModel.title,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(
-            height: 6,
-          ),
-          Image.network(
-            jsonModel.coverUrl,
-            height: 200,
-            fit: BoxFit.fitHeight,
-          ),
-        ],
-      ),
-    );
+        ));
   }
 }
