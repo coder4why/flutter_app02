@@ -26,19 +26,17 @@ class MainPage extends StatelessWidget {
 
   final List<Widget> proLists = [];
   List<Widget> renderProducts() {
-    proLists.add(const SizedBox(height: 10));
     for (var item in dataModels) {
       proLists.add(ProductWidget(
           item['title'] ?? '', item['subTitle'] ?? '', item['imageUrl'] ?? ''));
     }
-    proLists.add(const SizedBox(height: 10));
     return proLists;
   }
 
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.fromLTRB(10, 12, 10, 2),
       children: [
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -59,7 +57,10 @@ class ProductWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(border: Border.all(width: 1)),
+        margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+        decoration: BoxDecoration(
+            border: Border.all(
+                width: 1, color: const Color.fromARGB(255, 223, 220, 220))),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
