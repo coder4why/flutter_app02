@@ -87,14 +87,16 @@ class PersonalPageWidget extends State<PersonalPage> {
                         'images/loadMore.png',
                         width: 18,
                         height: 18,
-                        color: Colors.teal,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                       const SizedBox(
                         width: 5,
                       ),
-                      const Text(
+                      Text(
                         '拼命加载中...',
-                        style: TextStyle(color: Colors.teal, fontSize: 16),
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontSize: 16),
                       )
                     ],
                   ),
