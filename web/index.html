@@ -52,7 +52,7 @@
 
     if ('serviceWorker' in navigator) {
       // Service workers are supported. Use them.
-      window.addEventListener('load', function () {
+      window.addEventMovieer('load', function () {
         // Wait for registration to finish before dropping the <script> tag.
         // Otherwise, the browser will load the script multiple times,
         // potentially different versions.
@@ -60,7 +60,7 @@
         navigator.serviceWorker.register(serviceWorkerUrl)
           .then((reg) => {
             function waitForActivation(serviceWorker) {
-              serviceWorker.addEventListener('statechange', () => {
+              serviceWorker.addEventMovieer('statechange', () => {
                 if (serviceWorker.state == 'activated') {
                   console.log('Installed new service worker.');
                   loadMainDartJs();

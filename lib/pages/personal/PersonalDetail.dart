@@ -20,12 +20,18 @@ class _PersonalDetailState extends State<PersonalDetail> {
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
+              width: MediaQuery.of(context).size.width - 30,
+              height: 230,
               clipBehavior: Clip.hardEdge,
               decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              child: Image.network(widget.jsonModel.coverUrl),
+                  borderRadius: BorderRadius.all(Radius.circular(3))),
+              child: Image.network(
+                widget.jsonModel.coverUrl,
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(
               height: 10,

@@ -81,7 +81,17 @@ class ProductWidget extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Image.network(imageUrl)
+            Container(
+              width: MediaQuery.of(context).size.width - 44,
+              height: 230,
+              clipBehavior: Clip.hardEdge,
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(3))),
+              child: Image.network(
+                imageUrl,
+                fit: BoxFit.cover,
+              ),
+            )
           ],
         ));
   }

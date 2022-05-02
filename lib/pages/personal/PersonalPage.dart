@@ -143,11 +143,18 @@ class PersonItemWidget extends StatelessWidget {
               const SizedBox(
                 height: 6,
               ),
-              Image.network(
-                jsonModel.coverUrl,
-                height: 200,
-                fit: BoxFit.fitHeight,
-              ),
+              Container(
+                width: MediaQuery.of(context).size.width - 44,
+                height: 230,
+                clipBehavior: Clip.hardEdge,
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(3))),
+                child: Image.network(
+                  jsonModel.coverUrl,
+                  height: 200,
+                  fit: BoxFit.cover,
+                ),
+              )
             ],
           ),
         ));

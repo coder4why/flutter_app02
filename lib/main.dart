@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'components/BottomTabBarWidget.dart';
-import 'pages/listen/ListenPage.dart';
+import 'pages/movie/MoviePage.dart';
 import 'pages/main/MainPage.dart';
 import 'pages/personal/PersonalPage.dart';
 
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             useMaterial3: false,
-            colorScheme: const ColorScheme.light(primary: Colors.teal),
+            colorScheme: const ColorScheme.light(primary: Colors.orange),
             primaryColor: Colors.white));
   }
 }
@@ -55,7 +55,7 @@ class HomeStateWidget extends State<StatefulWidget> {
         alignment: AlignmentDirectional.center,
         //使用IndexedStack，TabBar切换时，body不会重新渲染
         index: currentIndex,
-        children: [MainPage(), const ListenPage(), const PersonalPage()],
+        children: [MainPage(), const MoviePage(), const PersonalPage()],
       ),
       bottomNavigationBar: BottomTabBarWidget(tapSwitch),
     );
