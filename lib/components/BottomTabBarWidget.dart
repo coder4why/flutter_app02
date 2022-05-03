@@ -16,23 +16,25 @@ class BottomTabBarContentWidget extends State<StatefulWidget> {
   Widget build(BuildContext context) {
     return Obx(() => BottomNavigationBar(
             onTap: (value) {
-              tabState().switchIndex(value);
+              appState().switchIndex(value);
             },
-            currentIndex: tabState().tabBarIndex.value,
+            currentIndex: appState().tabBarIndex.value,
             type: BottomNavigationBarType.fixed,
             enableFeedback: false,
+            selectedFontSize: 13,
+            unselectedFontSize: 13,
             iconSize: 28,
-            items: const [
-              BottomNavigationBarItem(
-                  label: '首页', icon: Icon(Icons.air), tooltip: ''),
-              BottomNavigationBarItem(
-                  label: '电影',
-                  icon: Icon(Icons.movie_filter_outlined),
-                  tooltip: ''),
-              BottomNavigationBarItem(
-                  label: '我的',
-                  icon: Icon(Icons.location_searching),
-                  tooltip: ''),
+            items: [
+              renderItem(0),
+              renderItem(1),
+              renderItem(2),
             ]));
   }
+}
+
+BottomNavigationBarItem renderItem(index) {
+  return BottomNavigationBarItem(
+      label: GlobalConfig.tabZwTitles[index],
+      icon: Icon(GlobalConfig.tabIcons[index]),
+      tooltip: '');
 }

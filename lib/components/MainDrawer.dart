@@ -41,13 +41,13 @@ class _MainDrawerState extends State<MainDrawer> {
             style: TextStyle(fontSize: 16, color: Colors.black87),
           ),
           trailing: Icon(
-              tabState().isPink.value
+              appState().isPink.value
                   ? Icons.wb_sunny_outlined
                   : Icons.nightlight_outlined,
               color: Colors.black87,
               size: 22.0),
           onTap: () {
-            tabState().changeTheme();
+            appState().changeTheme();
             Get.back();
           },
         ),
@@ -62,25 +62,20 @@ class _MainDrawerState extends State<MainDrawer> {
 }
 
 ListTile renderTile(index, context) {
-  List<String> titles = ['HOME', 'MOVIE', 'PERSONAL'];
-  List<IconData> icons = [
-    Icons.air,
-    Icons.movie_filter_outlined,
-    Icons.gps_not_fixed_outlined
-  ];
   return ListTile(
     title: Text(
-      titles[index],
+      GlobalConfig.tabTitles[index],
       style: const TextStyle(fontSize: 16, color: Colors.black87),
       textAlign: TextAlign.left,
     ),
-    trailing: Icon(icons[index], color: Colors.black87, size: 22.0),
+    trailing:
+        Icon(GlobalConfig.tabIcons[index], color: Colors.black87, size: 22.0),
     onTap: () {
       Get.back();
       // Navigator.pop(context);
       if (index == 0) return;
       Future.delayed(const Duration(milliseconds: 200), () {
-        tabState().switchIndex(index);
+        appState().switchIndex(index);
       });
     },
   );

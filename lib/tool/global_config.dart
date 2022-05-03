@@ -35,6 +35,16 @@ class MainState {
 }
 
 final MainState mainState = MainState();
-MainState tabState() {
+MainState appState() {
   return mainState;
+}
+
+class GlobalConfig {
+  static const List<IconData> tabIcons = [
+    Icons.air,
+    Icons.movie_filter_outlined,
+    Icons.beach_access_outlined
+  ];
+  static const List<String> tabTitles = ['HOME', 'MOVIE', 'VIDEO'];
+  static const List<String> tabZwTitles = ['首页', '电影', '视频'];
 }

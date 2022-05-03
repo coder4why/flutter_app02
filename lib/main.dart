@@ -37,22 +37,22 @@ class HomeStateWidget extends State<StatefulWidget> {
               appBar: AppBar(
                 title: IndexedStack(
                   alignment: AlignmentDirectional.center,
-                  index: tabState().tabBarIndex.value, // currentIndex,
-                  children: const [
-                    Text('CODERWHY'),
-                    Text('MOVIE'),
-                    Text('PERSONAL')
+                  index: appState().tabBarIndex.value, // currentIndex,
+                  children: [
+                    Text(GlobalConfig.tabTitles[0]),
+                    Text(GlobalConfig.tabTitles[1]),
+                    Text(GlobalConfig.tabTitles[2])
                   ],
                 ),
                 toolbarHeight: 40,
               ),
               drawer:
-                  tabState().tabBarIndex.value == 0 ? const MainDrawer() : null,
+                  appState().tabBarIndex.value == 0 ? const MainDrawer() : null,
               drawerEdgeDragWidth: 100,
               body: IndexedStack(
                 alignment: AlignmentDirectional.center,
                 //使用IndexedStack，TabBar切换时，body不会重新渲染
-                index: tabState().tabBarIndex.value,
+                index: appState().tabBarIndex.value,
                 children: [MainPage(), const MoviePage(), const PersonalPage()],
               ),
               bottomNavigationBar: const BottomTabBarWidget(),

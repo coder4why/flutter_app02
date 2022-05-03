@@ -33,7 +33,7 @@ class PersonalPageWidget extends State<PersonalPage> {
     if (!start) {
       page++;
     }
-    Request.get('https://api.apiopen.top/api/getHaoKanVideo?page=$page&size=3',
+    Request.get('https://api.apiopen.top/api/getHaoKanVideo?page=$page&size=10',
         (response) {
       if (response['code'] == 200) {
         var result = response['result'];
