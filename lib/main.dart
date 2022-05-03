@@ -16,15 +16,7 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-        home: const HomeWidget(),
-        theme: ThemeData(
-            //splashColor highlightColor：全局去除按钮点击的水波纹效果
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            useMaterial3: false,
-            colorScheme: const ColorScheme.light(primary: Colors.pink),
-            primaryColor: Colors.white));
+    return GetMaterialApp(home: const HomeWidget(), theme: Themes.pink);
   }
 }
 
@@ -48,7 +40,7 @@ class HomeStateWidget extends State<StatefulWidget> {
                   index: tabState().tabBarIndex.value, // currentIndex,
                   children: const [
                     Text('CODERWHY'),
-                    Text('CENTER'),
+                    Text('MOVIE'),
                     Text('PERSONAL')
                   ],
                 ),

@@ -1,8 +1,5 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_app02/pages/personal/PersonalDetail.dart';
-import 'package:flutter_app02/pages/personal/model/PersonalModel.dart';
 import 'package:get/get.dart';
 import '../tool/global_config.dart';
 
@@ -20,8 +17,12 @@ class _MainDrawerState extends State<MainDrawer> {
       decoration: const BoxDecoration(color: Colors.white),
       child: Column(children: [
         const UserAccountsDrawerHeader(
-          accountName: Text('CODER4WHY'),
-          accountEmail: Text('1888888888@163.com'),
+          accountName: Text(
+            'CODER4WHY',
+            style: TextStyle(color: Colors.black54),
+          ),
+          accountEmail: Text('1888888888@163.com',
+              style: TextStyle(color: Colors.black38)),
           currentAccountPicture: CircleAvatar(
               backgroundColor: Colors.white,
               backgroundImage: NetworkImage(
@@ -31,6 +32,28 @@ class _MainDrawerState extends State<MainDrawer> {
         renderTile(0, context),
         renderTile(1, context),
         renderTile(2, context),
+        const Expanded(
+          child: SizedBox(),
+        ),
+        ListTile(
+          title: const Text(
+            'THEME',
+            style: TextStyle(fontSize: 16, color: Colors.black87),
+          ),
+          trailing: Icon(
+              tabState().isPink.value
+                  ? Icons.wb_sunny_outlined
+                  : Icons.nightlight_outlined,
+              color: Colors.black87,
+              size: 22.0),
+          onTap: () {
+            tabState().changeTheme();
+            Get.back();
+          },
+        ),
+        const SizedBox(
+          height: 20,
+        )
       ]),
       width: MediaQuery.of(context).size.width * 0.7,
       height: MediaQuery.of(context).size.height,
