@@ -7,7 +7,7 @@ class MainState {
   }
 }
 
-final MainState mainState = MainState(); //Get.put(MainState());
+final MainState mainState = MainState();
 MainState tabState() {
   return mainState;
 }

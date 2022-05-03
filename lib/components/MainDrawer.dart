@@ -1,5 +1,9 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_app02/pages/personal/PersonalDetail.dart';
+import 'package:flutter_app02/pages/personal/model/PersonalModel.dart';
+import 'package:get/get.dart';
 import '../tool/global_config.dart';
 
 class MainDrawer extends StatefulWidget {
@@ -49,7 +53,8 @@ ListTile renderTile(index, context) {
     ),
     trailing: Icon(icons[index], color: Colors.black87, size: 22.0),
     onTap: () {
-      Navigator.pop(context);
+      Get.back();
+      // Navigator.pop(context);
       Future.delayed(const Duration(milliseconds: 200), () {
         tabState().switchIndex(index);
       });
