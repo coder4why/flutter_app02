@@ -64,6 +64,7 @@ class PersonalPageWidget extends State<PersonalPage> {
     return Padding(
         padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
         child: RefreshIndicator(
+            displacement: 40,
             triggerMode: RefreshIndicatorTriggerMode.onEdge,
             onRefresh: () {
               loadMore(false);
