@@ -55,6 +55,7 @@ ListTile renderTile(index, context) {
     onTap: () {
       Get.back();
       // Navigator.pop(context);
+      if (index == 0) return;
       Future.delayed(const Duration(milliseconds: 200), () {
         tabState().switchIndex(index);
       });

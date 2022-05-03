@@ -5,12 +5,6 @@ import '../tool/global_config.dart';
 
 class BottomTabBarWidget extends StatefulWidget {
   const BottomTabBarWidget({Key? key}) : super(key: key);
-
-  // final Function tapSwitch;
-  // const BottomTabBarWidget(
-  //   this.tapSwitch, {
-  //   Key? key,
-  // }) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return BottomTabBarContentWidget();

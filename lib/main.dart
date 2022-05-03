@@ -37,13 +37,6 @@ class HomeWidget extends StatefulWidget {
 }
 
 class HomeStateWidget extends State<StatefulWidget> {
-  // int currentIndex = 0;
-  // tapSwitch(value) {
-  //   setState(() {
-  //     currentIndex = value;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
