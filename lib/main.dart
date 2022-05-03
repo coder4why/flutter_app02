@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             useMaterial3: false,
-            colorScheme: const ColorScheme.light(primary: Colors.orange),
+            colorScheme: const ColorScheme.light(primary: Colors.pink),
             primaryColor: Colors.white));
   }
 }

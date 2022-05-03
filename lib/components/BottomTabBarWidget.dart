@@ -35,11 +35,14 @@ class BottomTabBarContentWidget extends State<StatefulWidget> {
         enableFeedback: false,
         iconSize: 28,
         items: const [
-          BottomNavigationBarItem(label: '首页', icon: Icon(Icons.air)),
           BottomNavigationBarItem(
-              label: '电影', icon: Icon(Icons.movie_filter_outlined)),
+              label: '首页', icon: Icon(Icons.air), tooltip: ''),
           BottomNavigationBarItem(
-              label: '我的', icon: Icon(Icons.location_searching)),
+              label: '电影',
+              icon: Icon(Icons.movie_filter_outlined),
+              tooltip: ''),
+          BottomNavigationBarItem(
+              label: '我的', icon: Icon(Icons.location_searching), tooltip: ''),
         ]);
   }
 }
