@@ -1,5 +1,6 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
+import 'package:get/instance_manager.dart';
 import 'package:video_player/video_player.dart';
 import 'model/PersonalModel.dart';
 
@@ -39,6 +40,10 @@ class _PersonalDetailState extends State<PersonalDetail> {
       appBar: AppBar(
         title: Text(widget.jsonModel.userName),
         toolbarHeight: 40,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios),
+          onPressed: () => {Navigator.pop(context)},
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),
@@ -89,7 +94,9 @@ class _PersonalDetailState extends State<PersonalDetail> {
         //Icons.pause：如果是则显示这个图标
         //Icons.play_arrow：如果不是，则显示这个图标
         child: Icon(
-          initSuccess ? Icons.pause : Icons.play_arrow,
+          initSuccess && _playerController.value.isPlaying
+              ? Icons.pause
+              : Icons.play_arrow,
           color: Colors.white,
         ),
       ),
