@@ -147,8 +147,8 @@ class PersonItemWidget extends StatelessWidget {
                 height: 6,
               ),
               Container(
-                width: MediaQuery.of(context).size.width - 44,
-                height: 230,
+                // width: MediaQuery.of(context).size.width - 44,
+                // height: 230,
                 clipBehavior: Clip.hardEdge,
                 decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(3))),
