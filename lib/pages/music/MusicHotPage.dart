@@ -2,6 +2,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../tool/global_config.dart';
 import 'model/music_model.dart';
 import 'request/request_music.dart';
 
@@ -19,6 +20,7 @@ class MusicHotPage extends StatefulWidget {
 class _MusicHotPageState extends State<MusicHotPage> {
   AudioPlayer audioPlayer = AudioPlayer();
   MusicRankModel dataModel = MusicRankModel();
+  Color mainColor = GlobalConfig.getRandamColor();
   @override
   void dispose() {
     super.dispose();
@@ -61,7 +63,7 @@ class _MusicHotPageState extends State<MusicHotPage> {
                             end: Alignment.topRight, //左下
                             colors: [
                           Colors.white,
-                          Colors.pinkAccent.withAlpha(100),
+                          mainColor,
                           Colors.white,
                         ])),
                     child: Column(children: [
@@ -129,7 +131,7 @@ class _MusicHotPageState extends State<MusicHotPage> {
       child: Row(children: [
         Icon(
           Icons.play_circle_rounded,
-          color: Colors.pink[400],
+          color: mainColor,
           size: 17,
         ),
         const SizedBox(
@@ -145,7 +147,7 @@ class _MusicHotPageState extends State<MusicHotPage> {
         const Expanded(child: SizedBox()),
         Icon(
           Icons.cached_sharp,
-          color: Colors.pink[400],
+          color: mainColor,
           size: 20,
         ),
         const SizedBox(
@@ -190,31 +192,51 @@ class _MusicHotPageState extends State<MusicHotPage> {
                   color: Colors.black26,
                   size: 18,
                 ),
-                const SizedBox(
-                  width: 15,
+                SizedBox(
+                  width: i < 3 ? 8 : 10,
                 ),
-                Text(
-                  '${i + 1}',
-                  style: TextStyle(color: i < 3 ? Colors.pink : Colors.black54),
+                SizedBox(
+                  // width: 20,
+                  child: Text(
+                    '${i + 1}',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: i < 3 ? mainColor : Colors.black54,
+                        fontSize: i < 3 ? 18 : 14,
+                        fontWeight:
+                            i < 3 ? FontWeight.bold : FontWeight.normal),
+                  ),
                 ),
-                const SizedBox(
-                  width: 15,
+                Container(
+                  width: 35,
+                  height: 35,
+                  clipBehavior: Clip.hardEdge,
+                  margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  child: Image.network(songInfo.albumSizableCover),
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(6))),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      songInfo.remark,
-                      textHeightBehavior: const TextHeightBehavior(
-                          applyHeightToFirstAscent: false),
-                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                    ConstrainedBox(
+                      constraints: BoxConstraints(
+                          maxWidth: MediaQuery.of(context).size.width / 2.0),
+                      child: Text(
+                        songInfo.remark,
+                        textHeightBehavior: const TextHeightBehavior(
+                            applyHeightToFirstAscent: false),
+                        style:
+                            const TextStyle(fontSize: 14, color: Colors.black),
+                      ),
                     ),
                     const SizedBox(
                       height: 4,
                     ),
                     ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 200),
+                      constraints: BoxConstraints(
+                          maxWidth: MediaQuery.of(context).size.width / 2.0),
                       child: Text(
                         songInfo.filename,
                         style: const TextStyle(

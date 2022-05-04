@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
@@ -47,4 +49,20 @@ class GlobalConfig {
   ];
   static const List<String> tabTitles = ['HOME', 'MOVIE', 'VIDEO'];
   static const List<String> tabZwTitles = ['首页', '电影', '视频'];
+
+  static const List<Color> musicColors = [
+    Color.fromARGB(255, 245, 112, 156),
+    Color.fromARGB(255, 196, 254, 196),
+    Color.fromARGB(255, 237, 252, 161),
+    Color.fromARGB(255, 241, 203, 246),
+    Color.fromARGB(255, 247, 195, 237),
+    Color.fromARGB(255, 248, 244, 211),
+    Color.fromARGB(255, 173, 226, 248),
+    Color.fromARGB(255, 236, 237, 200),
+  ];
+
+  static Color getRandamColor() {
+    int index = (Random()).nextInt(musicColors.length - 1);
+    return musicColors[index];
+  }
 }
