@@ -1,6 +1,5 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
-import 'package:get/instance_manager.dart';
 import 'package:video_player/video_player.dart';
 import 'model/PersonalModel.dart';
 
@@ -46,7 +45,7 @@ class _PersonalDetailState extends State<PersonalDetail> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

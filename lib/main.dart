@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app02/pages/music/MusicPage.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/route_manager.dart';
 import 'components/BottomTabBarWidget.dart';
 import 'components/MainDrawer.dart';
 import 'pages/movie/MoviePage.dart';
-import 'pages/main/MainPage.dart';
 import 'pages/personal/PersonalPage.dart';
 import 'tool/global_config.dart';
 
@@ -53,7 +53,7 @@ class HomeStateWidget extends State<StatefulWidget> {
                 alignment: AlignmentDirectional.center,
                 //使用IndexedStack，TabBar切换时，body不会重新渲染
                 index: appState().tabBarIndex.value,
-                children: [MainPage(), const MoviePage(), const PersonalPage()],
+                children: const [MusicPage(), MoviePage(), PersonalPage()],
               ),
               bottomNavigationBar: const BottomTabBarWidget(),
             )));
