@@ -233,6 +233,8 @@ class _MusicHotPageState extends State<MusicHotPage> {
                           maxWidth: MediaQuery.of(context).size.width / 2.0),
                       child: Text(
                         songInfo.remark,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         textHeightBehavior: const TextHeightBehavior(
                             applyHeightToFirstAscent: false),
                         style:
@@ -247,6 +249,8 @@ class _MusicHotPageState extends State<MusicHotPage> {
                           maxWidth: MediaQuery.of(context).size.width / 2.0),
                       child: Text(
                         songInfo.filename,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                             fontSize: 12, color: Colors.black54),
                       ),
