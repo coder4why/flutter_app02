@@ -180,6 +180,14 @@ class _MusicHotPageState extends State<MusicHotPage> {
                 audioPlayer.pause();
               }
               audioPlayer.play(model.url);
+              //刷新播放按钮：
+              List<RankSongInfo> allSongs = dataModel.songs;
+              for (var item in allSongs) {
+                item.isPlaying = item.hash == songInfo.hash;
+              }
+              setState(() {
+                dataModel.songs = allSongs;
+              });
             }
           });
         },
@@ -189,8 +197,8 @@ class _MusicHotPageState extends State<MusicHotPage> {
               children: [
                 const Icon(
                   Icons.add_circle,
-                  color: Colors.black26,
-                  size: 18,
+                  color: Color.fromARGB(66, 93, 93, 93),
+                  size: 20,
                 ),
                 SizedBox(
                   width: i < 3 ? 8 : 10,
@@ -246,8 +254,12 @@ class _MusicHotPageState extends State<MusicHotPage> {
                   ],
                 ),
                 const Expanded(child: SizedBox()),
-                const Icon(Icons.play_circle_sharp,
-                    color: Colors.black26, size: 18),
+                Icon(
+                    songInfo.isPlaying
+                        ? Icons.pause_circle_filled_sharp
+                        : Icons.play_circle_sharp,
+                    color: const Color.fromARGB(66, 93, 93, 93),
+                    size: 20),
                 const SizedBox(
                   width: 15,
                 ),

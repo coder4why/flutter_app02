@@ -66,6 +66,7 @@ class RankSongInfo {
   String addtime = '';
   String songUrl = '';
   String singer = '';
+  bool isPlaying = false;
   RankSongInfo.fromMap(Map<String, dynamic> element) {
     rankCount = (element['rank_count'] ?? '');
     sqhash = (element['sqhash'] ?? '');
