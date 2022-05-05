@@ -1,5 +1,7 @@
 // ignore: file_names
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app02/tool/global_config.dart';
 import 'package:get/get.dart';
 import 'MusicHotPage.dart';
 import 'model/music_model.dart';
@@ -11,11 +13,16 @@ class MusicPage extends StatefulWidget {
   State<MusicPage> createState() => _MusicPageState();
 }
 
-class _MusicPageState extends State<MusicPage> {
+class _MusicPageState extends State<MusicPage>
+    with SingleTickerProviderStateMixin {
   MusicModel dataModel = MusicModel();
+  late TabController _tabController;
+  final List<String> _tabs = ["音乐", "排行榜", "新歌"];
   @override
   void initState() {
     super.initState();
+    _tabController = TabController(length: _tabs.length, vsync: this);
+    _tabController.addListener(() {});
     RequestMusic.requestMusicRankList((model) {
       setState(() {
         dataModel = model;
@@ -27,9 +34,51 @@ class _MusicPageState extends State<MusicPage> {
   Widget build(BuildContext context) {
     return dataModel.classify_1.isEmpty
         ? const SizedBox()
-        : ListView(
-            padding: const EdgeInsets.all(15),
-            children: getChildrens(dataModel, context));
+        : Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              shadowColor: Colors.black12,
+              title: Transform.scale(
+                  scale: 1,
+                  child: TabBar(
+                      onTap: (index) {},
+                      labelColor: Theme.of(context).appBarTheme.backgroundColor,
+                      labelPadding: const EdgeInsets.all(0),
+                      padding: const EdgeInsets.all(0),
+                      dragStartBehavior: DragStartBehavior.down,
+                      labelStyle: TextStyle(
+                          color: Theme.of(context).appBarTheme.backgroundColor,
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold),
+                      unselectedLabelStyle: const TextStyle(
+                          color: Colors.black12,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                      tabs: _tabs.map((item) => Tab(text: item)).toList())),
+              toolbarHeight: 44,
+              actions: [
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.search,
+                      color: Theme.of(context).appBarTheme.backgroundColor,
+                      size: 24,
+                    )),
+                IconButton(
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                    icon: Icon(
+                      Icons.menu,
+                      color: Theme.of(context).appBarTheme.backgroundColor,
+                      size: 24,
+                    ))
+              ],
+            ),
+            body: ListView(
+                padding: const EdgeInsets.all(15),
+                children: getChildrens(dataModel, context)),
+          );
   }
 }
 
@@ -51,7 +100,7 @@ List<Widget> getChildrens(MusicModel model, BuildContext context) {
 
 Widget renderItem(Map element, BuildContext context) {
   return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
+    mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text(

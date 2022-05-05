@@ -9,8 +9,8 @@ class Themes {
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       useMaterial3: false,
-      appBarTheme: const AppBarTheme(backgroundColor: Colors.pink),
-      colorScheme: const ColorScheme.light(primary: Colors.pink),
+      appBarTheme: AppBarTheme(backgroundColor: GlobalConfig.musicColors[0]),
+      colorScheme: ColorScheme.light(primary: GlobalConfig.musicColors[0]),
       primaryColor: Colors.white);
 
   static final blue = ThemeData.light().copyWith(
@@ -18,8 +18,8 @@ class Themes {
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       useMaterial3: false,
-      appBarTheme: const AppBarTheme(backgroundColor: Colors.blue),
-      colorScheme: const ColorScheme.light(primary: Colors.blue),
+      appBarTheme: AppBarTheme(backgroundColor: GlobalConfig.musicColors[8]),
+      colorScheme: ColorScheme.light(primary: GlobalConfig.musicColors[8]),
       primaryColor: Colors.white);
 }
 
@@ -59,6 +59,7 @@ class GlobalConfig {
     Color.fromARGB(255, 248, 244, 211),
     Color.fromARGB(255, 173, 226, 248),
     Color.fromARGB(255, 236, 237, 200),
+    Color.fromARGB(255, 118, 151, 247),
   ];
 
   static Color getRandamColor() {

@@ -20,16 +20,24 @@ class MusicHotPage extends StatefulWidget {
 class _MusicHotPageState extends State<MusicHotPage> {
   AudioPlayer audioPlayer = AudioPlayer();
   MusicRankModel dataModel = MusicRankModel();
+  RankSongInfo playModel = RankSongInfo();
   Color mainColor = GlobalConfig.getRandamColor();
   @override
   void dispose() {
     super.dispose();
     audioPlayer.release();
+    playModel.hash = '';
+    playModel.isPlaying = false;
   }
 
   @override
   void initState() {
     super.initState();
+    audioPlayer.onPlayerCompletion.listen((event) {
+      setState(() {
+        playModel.isPlaying = false;
+      });
+    });
     if (widget.rankModel.songs.isEmpty) {
       RequestMusic.requestSongRankList(widget.rankModel, (model) {
         setState(() {
@@ -55,7 +63,7 @@ class _MusicHotPageState extends State<MusicHotPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: const EdgeInsets.fromLTRB(0, 44, 0, 20),
+                    padding: const EdgeInsets.fromLTRB(0, 44, 0, 40),
                     decoration: BoxDecoration(
                         gradient: LinearGradient(
                             //渐变位置
@@ -168,13 +176,15 @@ class _MusicHotPageState extends State<MusicHotPage> {
       RankSongInfo songInfo = dataModel.songs[i];
       list.add(GestureDetector(
         onTap: () {
+          if (audioPlayer.state == PlayerState.PLAYING &&
+              songInfo.hash == playModel.hash) {
+            audioPlayer.pause();
+            setState(() {
+              playModel.isPlaying = false;
+            });
+            return;
+          }
           RequestMusic.requestMusicUrl(songInfo.hash, (MusicInfoModel model) {
-            Get.defaultDialog(
-                title: model.url.isNotEmpty ? '即将播放' : '播放失败',
-                middleText:
-                    model.url.isNotEmpty ? model.fileName : '需要开通VIP权限，才可以哦！',
-                titlePadding: const EdgeInsets.only(top: 20),
-                titleStyle: const TextStyle(fontSize: 18));
             if (model.url.isNotEmpty) {
               if (audioPlayer.state == PlayerState.PLAYING) {
                 audioPlayer.pause();
@@ -185,9 +195,17 @@ class _MusicHotPageState extends State<MusicHotPage> {
               for (var item in allSongs) {
                 item.isPlaying = item.hash == songInfo.hash;
               }
+              songInfo.isPlaying = true;
               setState(() {
                 dataModel.songs = allSongs;
+                playModel = songInfo;
               });
+            } else {
+              Get.defaultDialog(
+                  title: '播放失败',
+                  middleText: '需要开通VIP权限，才可以哦！',
+                  titlePadding: const EdgeInsets.only(top: 20),
+                  titleStyle: const TextStyle(fontSize: 18));
             }
           });
         },
@@ -237,8 +255,15 @@ class _MusicHotPageState extends State<MusicHotPage> {
                         overflow: TextOverflow.ellipsis,
                         textHeightBehavior: const TextHeightBehavior(
                             applyHeightToFirstAscent: false),
-                        style:
-                            const TextStyle(fontSize: 14, color: Colors.black),
+                        style: TextStyle(
+                            fontSize: playModel.isPlaying &&
+                                    songInfo.hash == playModel.hash
+                                ? 16
+                                : 14,
+                            color: playModel.isPlaying &&
+                                    songInfo.hash == playModel.hash
+                                ? mainColor
+                                : Colors.black),
                       ),
                     ),
                     const SizedBox(
@@ -259,7 +284,7 @@ class _MusicHotPageState extends State<MusicHotPage> {
                 ),
                 const Expanded(child: SizedBox()),
                 Icon(
-                    songInfo.isPlaying
+                    playModel.isPlaying && songInfo.hash == playModel.hash
                         ? Icons.pause_circle_filled_sharp
                         : Icons.play_circle_sharp,
                     color: const Color.fromARGB(66, 93, 93, 93),
